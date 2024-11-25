@@ -1,102 +1,68 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Typography,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { motion } from "framer-motion";
+import "./Faqs.css";
 
-const FAQs = () => {
-  const faqs = [
-    {
-      question: "What is WellSquare?",
-      answer:
-        "WellSquare is a health tech platform designed to empower users with personalized tools for managing their health and wellness effectively.",
-    },
-    {
-      question: "How do I create a health plan?",
-      answer:
-        "Simply sign up, navigate to the 'Meal Planner' section, and follow the guided steps to create your personalized health plan.",
-    },
-    {
-      question: "Is my data secure?",
-      answer:
-        "Yes, your data is secure with us. We use industry-standard encryption and follow strict privacy policies.",
-    },
-    {
-      question: "Can I access the platform offline?",
-      answer:
-        "Yes, our platform supports offline access through our Progressive Web App (PWA) feature.",
-    },
-    {
-      question: "How can I contact customer support?",
-      answer:
-        "You can reach out to our support team through the 'Contact Us' section, available on our website.",
-    },
-  ];
+const faqs = [
+  {
+    question: "What is HealthTech?",
+    answer: "HealthTech refers to the use of technology to improve healthcare services and outcomes.",
+  },
+  {
+    question: "How can I access my health records?",
+    answer: "You can access your records by logging into your account on our platform and navigating to the 'My Records' section.",
+  },
+  {
+    question: "Is my data secure?",
+    answer: "Yes, we use industry-standard encryption and follow strict privacy policies to ensure your data is safe.",
+  },
+  {
+    question: "How can I contact customer support?",
+    answer: "You can reach our customer support team through the 'Contact Us' page or by emailing support@healthtech.com.",
+  },
+  {
+    question: "Do I need an account to access services?",
+    answer: "Yes, you need to create an account to access the full range of our services.",
+  },
+  // {
+  //   question: "What services do you provide?",
+  //   answer: "We provide telemedicine consultations, health records management, fitness tracking, and personalized health recommendations.",
+  // },
+  // {
+  //   question: "Can I cancel my subscription?",
+  //   answer: "Yes, you can cancel your subscription anytime through your account settings page.",
+  // },
+];
 
-  const accordionVariant = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  };
-
+const Faqs = () => {
   return (
-    <Box sx={{ padding: 4 }}>
-      {/* Header Section */}
-      <Box
-        sx={{
-          backgroundImage: "url('/assets/faqs-header.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "40vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          textAlign: "center",
-          color: "#fff",
-        }}
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-            Frequently Asked Questions
-          </Typography>
-        </motion.div>
-      </Box>
-
-      {/* FAQs Section */}
-      <Box sx={{ maxWidth: "800px", margin: "0 auto", mt: 4 }}>
+    <div className="faqs-page">
+      <h1 className="faqs-title">Frequently Asked Questions</h1>
+      <div className="faqs-list">
         {faqs.map((faq, index) => (
-          <motion.div
-            key={index}
-            variants={accordionVariant}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-          >
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls={`faq-${index}-content`}
-                id={`faq-${index}-header`}
-              >
-                <Typography variant="h6">{faq.question}</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography variant="body1">{faq.answer}</Typography>
-              </AccordionDetails>
-            </Accordion>
-          </motion.div>
+          <FaqItem key={index} question={faq.question} answer={faq.answer} />
         ))}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 
-export default FAQs;
+const FaqItem = ({ question, answer }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleFaq = () => setIsOpen(!isOpen);
+
+  return (
+    <div className={`faq-item ${isOpen ? "open" : ""}`}>
+      <div className="faq-question" onClick={toggleFaq}>
+        {question}
+        <span className="faq-icon">{isOpen ? "-" : "+"}</span>
+      </div>
+      {isOpen && (
+        <div className="faq-answer">
+          <p>{answer}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Faqs;

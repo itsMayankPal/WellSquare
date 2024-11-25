@@ -6,151 +6,211 @@ import {
   Card,
   CardContent,
   CardMedia,
-  Button,
 } from "@mui/material";
 import { motion } from "framer-motion";
 
 const AboutUs = () => {
-  const cardVariant = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
-    <Box>
-      {/* Hero Section */}
+    <Box
+      sx={{
+        backgroundColor: "#121212",
+        color: "#e0e0e0",
+        minHeight: "100vh",
+        padding: 4,
+      }}
+    >
+      {/* Intro Section */}
       <Box
         sx={{
-          backgroundImage: "url('/assets/about-hero.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "70vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
           textAlign: "center",
-          color: "#fff",
-          p: 2,
+          mb: 6,
         }}
+        component={motion.div}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
+        <Typography variant="h3" sx={{ fontWeight: "bold", mb: 2 }}>
+          About Us
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{ maxWidth: "600px", mx: "auto", lineHeight: 1.6 }}
         >
-          <Typography variant="h3" sx={{ fontWeight: "bold", mb: 2 }}>
-            About Us
-          </Typography>
-          <Typography variant="h6">
-            Empowering health through technology and personalized solutions.
-          </Typography>
-        </motion.div>
+          At WellSquare, we are passionate about empowering individuals to lead
+          healthier lives. With cutting-edge technology and personalized
+          solutions, we aim to be your ultimate health-tech companion.
+        </Typography>
       </Box>
 
-      {/* Mission Section */}
-      <Box sx={{ padding: 4 }}>
-        <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
-            Our Mission
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}
+      {/* Mission, Vision, Values Section */}
+      <Grid container spacing={4}>
+        {[
+          {
+            title: "Our Mission",
+            description:
+              "To provide innovative tools and personalized guidance for achieving health and wellness goals.",
+            image:
+              "https://img.freepik.com/premium-vector/professional-fitness-athletics-illustrations-collection-creative-projects_1120558-6080.jpg?w=1380",
+          },
+          {
+            title: "Our Vision",
+            description:
+              "To be the leading platform transforming the way individuals approach their physical and mental health.",
+            image:
+              "https://img.freepik.com/free-photo/happy-woman-wooden-bridge-green-meadow-sunny-day_1150-19354.jpg?t=st=1732213275~exp=1732216875~hmac=1b75531e30f774c49c5b3bf750c81ff92d082abe2dfea6022bb24fcebc503cc4&w=1060",
+          },
+          {
+            title: "Our Values",
+            description:
+              "Empathy, Innovation, and Integrity form the foundation of everything we do.",
+            image:
+              "https://img.freepik.com/free-vector/creative-idea-inspiration-innovation-concept_107791-13087.jpg?t=st=1732213359~exp=1732216959~hmac=9d538050ef0a632defaa5c8a9c5cfc194a28822909f9c593fc7c2c8d507a6f39&w=1380",
+          },
+        ].map((item, index) => (
+          <Grid
+            item
+            xs={12}
+            md={4}
+            key={index}
+            component={motion.div}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.4 }}
           >
-            At WellSquare, we believe in the power of health and wellness for
-            everyone. Our mission is to simplify health management by offering
-            personalized, tech-driven solutions that empower individuals to lead
-            healthier lives.
-          </Typography>
-        </motion.div>
-      </Box>
+            <Card
+              sx={{
+                backgroundColor: "#1c1c1c",
+                color: "#e0e0e0",
+                borderRadius: "12px",
+                overflow: "hidden",
+                boxShadow: "0 6px 20px rgba(0,0,0,0.5)",
+                "&:hover": {
+                  boxShadow: "0 12px 30px rgba(0,0,0,0.7)",
+                },
+              }}
+            >
+              <CardMedia
+                component="img"
+                height="200"
+                image={item.image}
+                alt={item.title}
+              />
+              <CardContent>
+                <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
+                  {item.title}
+                </Typography>
+                <Typography variant="body1">{item.description}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
 
       {/* Team Section */}
-      <Box sx={{ padding: 4, backgroundColor: "#f5f5f5" }}>
-        <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
+      <Box sx={{ textAlign: "center", mt: 8 }}>
+        <Typography variant="h4" sx={{ fontWeight: "bold", mb: 4 }}>
           Meet Our Team
         </Typography>
-        <Grid container spacing={4}>
+        <Grid
+          container
+          spacing={4}
+          sx={{
+            display: "flex",
+            justifyContent: "center", // Centers the content horizontally
+            alignItems: "center", // Vertically aligns the content
+          }}
+        >
           {[
             {
-              name: "Alice Johnson",
-              role: "Founder & CEO",
-              image: "/assets/team-alice.jpg",
+              name: "Nitika Dung",
+              role: "Frontend Developer",
+              image: "https://via.placeholder.com/150?text=Nitika+Dung",
             },
             {
-              name: "John Smith",
-              role: "Head of Technology",
-              image: "/assets/team-john.jpg",
-            },
-            {
-              name: "Emma Brown",
-              role: "Wellness Expert",
-              image: "/assets/team-emma.jpg",
+              name: "Mayank Pal",
+              role: "Backend Developer",
+              image: "https://via.placeholder.com/150?text=Mayank+Pal",
             },
           ].map((member, index) => (
-            <Grid item xs={12} md={4} key={index}>
-              <motion.div
-                variants={cardVariant}
-                initial="hidden"
-                whileInView="visible"
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              key={index}
+              component={motion.div}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Box
+                sx={{
+                  textAlign: "center",
+                  backgroundColor: "#1c1c1c",
+                  borderRadius: "12px",
+                  padding: 3,
+                  boxShadow: "0 4px 15px rgba(0,0,0,0.5)",
+                }}
               >
-                <Card>
-                  <CardMedia
-                    component="img"
-                    height="250"
-                    image={member.image}
-                    alt={member.name}
-                  />
-                  <CardContent>
-                    <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1 }}>
-                      {member.name}
-                    </Typography>
-                    <Typography variant="body2">{member.role}</Typography>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    borderRadius: "50%",
+                    marginBottom: "16px",
+                  }}
+                />
+                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                  {member.name}
+                </Typography>
+                <Typography variant="body2" sx={{ color: "#b0b0b0" }}>
+                  {member.role}
+                </Typography>
+              </Box>
             </Grid>
           ))}
         </Grid>
       </Box>
 
-      {/* Call-to-Action */}
+      {/* Call-to-Action Section */}
       <Box
         sx={{
-          padding: 4,
+          mt: 8,
           textAlign: "center",
-          backgroundColor: "primary.main",
-          color: "white",
+          padding: 4,
+          background: "linear-gradient(90deg, #1a1a1a, #212121)",
+          borderRadius: "12px",
+          boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
         }}
+        component={motion.div}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          Ready to Transform Your Health?
+        </Typography>
+        <Typography variant="body1" sx={{ mb: 4 }}>
+          Join us today and start your journey towards a healthier, happier you.
+        </Typography>
+        <motion.a
+          href="/signup"
+          style={{
+            display: "inline-block",
+            background: "#1e90ff",
+            color: "#fff",
+            padding: "10px 20px",
+            borderRadius: "8px",
+            fontWeight: "bold",
+            textDecoration: "none",
+          }}
+          whileHover={{
+            backgroundColor: "#4682b4",
+            transition: { duration: 0.3 },
+          }}
         >
-          <Typography variant="h4" sx={{ mb: 2 }}>
-            Join Us on Our Journey
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 4 }}>
-            Be a part of the WellSquare community and take the first step toward
-            a healthier life.
-          </Typography>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            href="/signup"
-            sx={{ textTransform: "none" }}
-          >
-            Get Started
-          </Button>
-        </motion.div>
+          Get Started
+        </motion.a>
       </Box>
     </Box>
   );

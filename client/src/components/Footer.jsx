@@ -8,7 +8,8 @@ const Footer = () => {
       sx={{
         backgroundColor: "primary.main",
         color: "white",
-        padding: 4,
+        // padding: 4,
+        paddingLeft: 4,
         mt: 4,
       }}
     >
@@ -43,12 +44,12 @@ const Footer = () => {
               About Us
             </Link>
             <Link
-              href="/features"
+              href="/blog"
               color="inherit"
               underline="hover"
               sx={{ mb: 0.5 }}
             >
-              Features
+              Blog
             </Link>
             <Link
               href="/faqs"
